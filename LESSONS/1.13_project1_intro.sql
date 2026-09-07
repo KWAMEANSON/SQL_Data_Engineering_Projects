@@ -1,4 +1,4 @@
 select distinct
-  job_country_anywhere
+  job_country
 from 
 job_postings_fact
