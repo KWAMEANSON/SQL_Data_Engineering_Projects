@@ -26,7 +26,7 @@ market using real world job postings data. It demonstrate my ability to **write 
 - **Best trade-off:** *what is the optimal skill set balancing demand and compensation?* 
 
 This project analyses a **data warehouse built using a star schema design. The warehouse structure consist of**:  
-![Data Warehouse](/images\1_2_Data_Warehouse.png)  
+![Data Warehouse](/images/1_2_Data_Warehouse.png)  
 
 - **Fact Table:** `Job_Postings_fact` - Central table containing job postings detals (job titles, locations, salaries, dates, etc.)
 - **Dimension Tables:**  
