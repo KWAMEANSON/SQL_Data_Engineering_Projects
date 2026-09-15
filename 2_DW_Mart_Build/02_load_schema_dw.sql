@@ -18,8 +18,7 @@ auto_detect = true);
 
 
 insert into job_postings_fact(
-    job_id,
-company_id,
+job_id,company_id,
 job_title_short,
 job_title,
 job_location,
