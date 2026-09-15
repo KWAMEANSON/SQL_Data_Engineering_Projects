@@ -14,14 +14,14 @@ create table company_dim(
 
 create table skills_dim(
     skill_id integer primary key,
-    skill varchar, 
+    skills varchar, 
     type varchar
 );
 
 create table job_postings_fact(
     job_id integer primary key,
     company_id integer,
-    job_titke_short varchar,
+    job_title_short varchar,
     job_title varchar,
     job_location varchar,
     job_via varchar,
@@ -29,7 +29,7 @@ create table job_postings_fact(
     job_work_from_home boolean,
     search_location varchar,
     job_posted_date timestamp,
-    job_no_degree_mentioin boolean,
+    job_no_degree_mention boolean,
     job_health_insurance boolean,
     job_country varchar,
     salary_rate varchar,
