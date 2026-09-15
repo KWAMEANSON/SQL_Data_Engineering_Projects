@@ -59,3 +59,20 @@ select skill_id, job_id
 from read_csv("C:/Users/Lenovo/Downloads/skills_job_dim.csv",
 auto_detect = true);
 
+
+select 'Company Dim' as table_name, count(*) as record_count from company_dim 
+union all 
+select 'Skills Dim', count(*) from skills_dim 
+union all 
+select 'Job Postings Fact', count(*) from job_postings_fact 
+union all
+select 'Skills Job Dim', count(*) from skills_job_dim; 
+
+select * from company_dim limit 5;
+
+select * from skills_dim limit 5;
+
+select * from job_postings_fact limit 5; 
+
+select * from skills_job_dim limit 5;
+
