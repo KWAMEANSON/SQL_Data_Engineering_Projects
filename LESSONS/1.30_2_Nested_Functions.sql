@@ -170,4 +170,90 @@ select
 array_struct[1].skill,
 array_struct[2],
 array_struct[3].type
-from skill_array_struct;
+from skill_array_struct; 
+
+
+
+--- MAP : unordered collection of dynamic key-value pairs
+select map {'skill' : 'python', 'type' : 'programming'}; --map keys must be unique
+
+with skill_map as (
+    select map {'skill' : 'python', 'type' : 'programming'} as skill_type
+ ) select 
+    skill_type ['skill']
+from 
+    skill_map;
+
+with skill_map as (
+    select map {'skill' : 'python', 'type' : 'programming'} as skill_type
+ ) select 
+    skill_type ['skill'],
+    skill_type['type']
+from 
+    skill_map;
+
+
+---JSON 
+select '{"skill":"python", "type":"programming"}'::JSON as skill_json;
+
+with raw_skill_json as (
+    select '{"skill":"python", "type":"programming"}'::JSON as skill_json
+) select skill_json
+    from raw_skill_json;
+
+with raw_skill_json as (
+    select '{"skill":"python", "type":"programming"}'::JSON as skill_json
+) select 
+    struct_pack(
+        skill := json_extract_string(skill_json, '$.skill'),
+        type := json_extract_string(skill_json, '$.type')
+    )
+    from raw_skill_json;
+
+
+--JSON to Array of structs
+with raw_json as (
+    select 
+    '[
+    {"skill":"python","type":"programming"},
+    {"skill":"SQL","type":"query_language"},
+    {"skill":"R","Type":"Programming"}]' :: json as skill_json 
+) 
+select array_agg(
+        struct_pack(
+                skill := json_extract_string(e.value, '$.skill'),
+                type := json_extract_string(e.value, '$.type')
+        )
+        order by json_extract_string(e.value, '$.skill')
+) as skills 
+from raw_json, json_each(skill_json) as e; 
+
+
+
+-- Arrays -Final Example
+-- Build a flat skill table for co-workers to access job titles, salary info and skills in one table
+
+select
+    jpf.job_id,
+    jpf.job_title,
+    jpf.salary_year_avg,
+    sd.skills
+from job_postings_fact as jpf 
+left join skills_job_dim as sjd 
+ on jpf.job_id = sjd.job_id 
+left join skills_dim as sd 
+ on sd.skill_id = sjd.skill_id;
+
+
+select
+    jpf.job_id,
+    jpf.job_title,
+    jpf.salary_year_avg,
+   array_agg(sd.skills) as skills_array
+from job_postings_fact as jpf 
+left join skills_job_dim as sjd 
+ on jpf.job_id = sjd.job_id 
+left join skills_dim as sd 
+ on sd.skill_id = sjd.skill_id
+ group by all;
+ 

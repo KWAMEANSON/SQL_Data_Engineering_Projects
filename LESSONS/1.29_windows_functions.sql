@@ -2,7 +2,7 @@
 select count(*)
 from job_postings_fact;
 
---Count rows -window function
+--Count rows - window function
 select 
 job_id,
 count(*) over ()
