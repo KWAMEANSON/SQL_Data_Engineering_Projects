@@ -88,7 +88,7 @@ Company hiring trends by role, location, and month.
 
 ![company Mart](../images/1_2_Company_Mart.png)
 
-**SQL File:** [07_create_company_mart.sql](2_DW_Mart_Build\07_create_company_prospecting_mart.sql) – Builds company hiring trends mart (optional)  
+**SQL File:** [07_create_company_mart.sql](2_DW_Mart_Build\07_create_company_prospecting_mart.sql) – Builds company hiring trends mart  
 
 **Purpose:** Company hiring trends analysis by role, location, and month  
 
