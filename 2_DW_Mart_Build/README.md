@@ -2,7 +2,7 @@
 
 An end-to-end data engineering pipeline that transforms raw CSV files from Google Cloud Storage into a normalized star schema data warehouse, then builds analytical data marts. 
 
-![Data Pipeline](images/1_1_Project1_EDA.png) 
+![Data Pipeline](../images/1_2_Project2_Data_Pipeline.png) 
  
 ## Executive Summary
 
@@ -11,7 +11,7 @@ An end-to-end data engineering pipeline that transforms raw CSV files from Googl
 - ✅ **ETL Development:** Implemented  **extract, transform, load** processes with idempotent opeartions and data-quality checks.
 - ✅ **Mart Architecture:** Created **specialized data marts** (flat, skill, priority) with additive measures and incremental update patterns for scalable analysis.
  
-## Problem $ Context  
+## Problem & Context  
 *Raw job posting data arrives as flat CSV files in Google Cloud Storage—not structured for analytical queries. Analysts need to answer:*
 
 **Which skills are most in-demand over time?**  
@@ -36,7 +36,7 @@ The pipeline transforms job posting CSVs from Google Cloud Storage into a normal
 ## Data Warehouse 
 The data warehouse implements a star schema with company_dim, skills_dim, job_postings_fact, and skills_job_dim tables.
 
-![Data Warehouse Schema](images/1_2_Data_Warehouse.png)
+![Data Warehouse Schema](../images/1_2_Data_Warehouse.png)
 
  - **SQL Files:**      
  
@@ -49,7 +49,7 @@ The data warehouse implements a star schema with company_dim, skills_dim, job_po
 **Flat Mart**  
 Denormalized table with all dimensions for ad-hoc queries.
 
-![Flat Mart Schema](images/1_2_Flat_Mart.png)
+![Flat Mart](../images/1_2_Flat_Mart.png)
 
 - **SQL File:**  
  
@@ -60,7 +60,7 @@ Denormalized table with all dimensions for ad-hoc queries.
 **Skills Mart**   
 Time-series skill demand analysis with additive measures.  
 
-![skills Mart Schema](images/1_2_Skills_Mart.png)
+![skills Mart](../images/1_2_Skills_Mart.png)
 
 - **SQL File:**  
   - [04_create_skills_mart.sql](2_DW_Mart_Build\04_create_skills_mart.sql) – Builds time-series skill demand mart  
@@ -72,7 +72,7 @@ Time-series skill demand analysis with additive measures.
 **Priority Mart** 
 Priority role tracking with incremental updates using MERGE operations.  
 
-![Priority Mart Schema](images\1_2_Priority_Mart.png)
+![Priority Mart](../images/1_2_Priority_Mart.png)
 
 **SQL Files:**  
 
@@ -86,7 +86,7 @@ Priority role tracking with incremental updates using MERGE operations.
 **Company Mart** 
 Company hiring trends by role, location, and month.  
 
-![company Mart](images\1_2_Company_Mart.png)
+![company Mart](../images/1_2_Company_Mart.png)
 
 **SQL File:** [07_create_company_mart.sql](2_DW_Mart_Build\07_create_company_prospecting_mart.sql) – Builds company hiring trends mart (optional)  
 
@@ -127,8 +127,7 @@ Load: Idempotent table creation with DROP TABLE IF EXISTS patterns
 - **Data Validation:** Verification queries at each pipeline step to ensure data integrity  
 - **Type Safety:** Proper data type definitions (VARCHAR, INTEGER, DOUBLE, BOOLEAN, TIMESTAMP)  
 - **Schema Organization:** Separate schemas (flat_mart, skills_mart, priority_mart, company_mart) for logical separation  
-- **Error Handling:** Structured script execution with clear error messages and progress reporting
-### Query Design & Optimization  
+- **Error Handling:** Structured script execution with clear error messages and progress reporting  
 
 
 
